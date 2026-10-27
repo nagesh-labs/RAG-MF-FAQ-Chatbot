@@ -1,0 +1,61 @@
+{
+  "scheme_id": "hdfc-silver-etf-fof-direct-growth",
+  "scheme_name": "HDFC Silver ETF Fund of Fund Direct-Growth",
+  "category": "Commodities / Silver FoF",
+  "amc": "HDFC Mutual Fund",
+  "nav": "₹31.6796",
+  "nav_date": "23-Oct-2026",
+  "groww_rating": "Not Rated / Unrated",
+  "expense_ratio": "0.21% (Direct Plan)",
+  "exit_load": "Exit load of 1%, if redeemed within 15 days.",
+  "min_sip_amount": "₹100",
+  "min_lumpsum_amount": "₹100",
+  "lock_in_period": "Nil (Open-ended scheme with no lock-in period)",
+  "riskometer": "Very High Riskometer",
+  "benchmark_index": "Domestic Price of Silver",
+  "fund_manager": "Krishan Kumar Daga",
+  "aum": "₹4,497.00 Cr",
+  "returns_lumpsum": {
+    "1Y": "+29.75%",
+    "3Y": "+36.68% (CAGR)",
+    "5Y": "N/A (< 5 years track record)",
+    "10Y": "N/A (< 10 years track record)",
+    "since_inception": "+33.80% (CAGR)"
+  },
+  "returns_sip": {
+    "1Y": "-22.37%",
+    "3Y": "+38.03% (XIRR)",
+    "5Y": "N/A (< 5 years track record)",
+    "10Y": "N/A (< 10 years track record)",
+    "since_inception": "+34.85% (XIRR)"
+  },
+  "top_holdings": [
+    {
+      "company_name": "HDFC Silver ETF Regular - Growth",
+      "corpus_percent": "100.32%",
+      "sector": "Unspecified"
+    },
+    {
+      "company_name": "Repo",
+      "corpus_percent": "0.33%",
+      "sector": "Unspecified"
+    },
+    {
+      "company_name": "Net Payables",
+      "corpus_percent": "-0.65%",
+      "sector": "Unspecified"
+    }
+  ],
+  "portfolio_turnover": "Not Applicable (Fund of Funds / FoF)",
+  "launch_date": "28-Oct-2022",
+  "stamp_duty": "0.005% (from July 1st, 2020)",
+  "risk_ratios": {
+    "standard_deviation": "+39.77%",
+    "beta": "0.90",
+    "sharpe_ratio": "0.95",
+    "sortino_ratio": "1.98",
+    "alpha": "0.92%"
+  },
+  "source_url": "https://groww.in/mutual-funds/hdfc-silver-etf-fof-direct-growth",
+  "last_updated_date": "2026-10-27"
+}

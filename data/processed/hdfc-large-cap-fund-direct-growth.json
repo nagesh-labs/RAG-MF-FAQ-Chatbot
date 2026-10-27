@@ -1,0 +1,71 @@
+{
+  "scheme_id": "hdfc-large-cap-fund-direct-growth",
+  "scheme_name": "HDFC Top 100 Fund Direct-Growth (Large Cap)",
+  "category": "Large Cap Equity",
+  "amc": "HDFC Mutual Fund",
+  "nav": "₹1,133.7610",
+  "nav_date": "23-Oct-2026",
+  "groww_rating": "4 out of 5 Stars",
+  "expense_ratio": "1.02% (Direct Plan)",
+  "exit_load": "Exit load of 1% if redeemed within 1 year",
+  "min_sip_amount": "₹100",
+  "min_lumpsum_amount": "₹100",
+  "lock_in_period": "Nil (Open-ended scheme with no lock-in period)",
+  "riskometer": "Moderately High Riskometer",
+  "benchmark_index": "NIFTY 100 Total Return Index",
+  "fund_manager": "Prashant Jain",
+  "aum": "₹37,293.95 Cr",
+  "returns_lumpsum": {
+    "1Y": "-10.26%",
+    "3Y": "+7.54% (CAGR)",
+    "5Y": "+8.42% (CAGR)",
+    "10Y": "+11.38% (CAGR)",
+    "since_inception": "+12.28% (CAGR)"
+  },
+  "returns_sip": {
+    "1Y": "-13.23%",
+    "3Y": "-2.18% (XIRR)",
+    "5Y": "+5.95% (XIRR)",
+    "10Y": "+10.99% (XIRR)",
+    "since_inception": "+11.77% (XIRR)"
+  },
+  "top_holdings": [
+    {
+      "company_name": "ICICI Bank Ltd",
+      "corpus_percent": "9.79%",
+      "sector": "Financial"
+    },
+    {
+      "company_name": "HDFC Bank Ltd",
+      "corpus_percent": "7.36%",
+      "sector": "Financial"
+    },
+    {
+      "company_name": "Bharti Airtel Ltd",
+      "corpus_percent": "6.46%",
+      "sector": "Technology"
+    },
+    {
+      "company_name": "Kotak Mahindra Bank Ltd",
+      "corpus_percent": "6.08%",
+      "sector": "Financial"
+    },
+    {
+      "company_name": "Titan Company Ltd",
+      "corpus_percent": "5.07%",
+      "sector": "Consumer Discretionary"
+    }
+  ],
+  "portfolio_turnover": "18%",
+  "launch_date": "01-Jan-2013",
+  "stamp_duty": "0.005% (from July 1st, 2020)",
+  "risk_ratios": {
+    "standard_deviation": "+14.38%",
+    "beta": "0.95",
+    "sharpe_ratio": "0.19",
+    "sortino_ratio": "0.24",
+    "alpha": "0.03%"
+  },
+  "source_url": "https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth",
+  "last_updated_date": "2026-10-27"
+}

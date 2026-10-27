@@ -1,0 +1,71 @@
+{
+  "scheme_id": "hdfc-mid-cap-fund-direct-growth",
+  "scheme_name": "HDFC Mid-Cap Opportunities Fund Direct-Growth",
+  "category": "Mid Cap Equity",
+  "amc": "HDFC Mutual Fund",
+  "nav": "₹213.4230",
+  "nav_date": "23-Oct-2026",
+  "groww_rating": "4 out of 5 Stars",
+  "expense_ratio": "0.74% (Direct Plan)",
+  "exit_load": "Exit load of 1% if redeemed within 1 year.",
+  "min_sip_amount": "₹100",
+  "min_lumpsum_amount": "₹100",
+  "lock_in_period": "Nil (Open-ended scheme with no lock-in period)",
+  "riskometer": "Moderately High Riskometer",
+  "benchmark_index": "NIFTY Midcap 150 Total Return Index",
+  "fund_manager": "Chirag Setalvad",
+  "aum": "₹101,856.06 Cr",
+  "returns_lumpsum": {
+    "1Y": "-3.17%",
+    "3Y": "+15.26% (CAGR)",
+    "5Y": "+16.49% (CAGR)",
+    "10Y": "+16.03% (CAGR)",
+    "since_inception": "+19.22% (CAGR)"
+  },
+  "returns_sip": {
+    "1Y": "-7.73%",
+    "3Y": "+4.65% (XIRR)",
+    "5Y": "+14.52% (XIRR)",
+    "10Y": "+17.95% (XIRR)",
+    "since_inception": "+18.45% (XIRR)"
+  },
+  "top_holdings": [
+    {
+      "company_name": "Repo",
+      "corpus_percent": "8.37%",
+      "sector": "Unspecified"
+    },
+    {
+      "company_name": "The Federal Bank Ltd",
+      "corpus_percent": "3.98%",
+      "sector": "Financial"
+    },
+    {
+      "company_name": "AU Small Finance Bank Ltd",
+      "corpus_percent": "3.94%",
+      "sector": "Financial"
+    },
+    {
+      "company_name": "Max Financial Services Ltd",
+      "corpus_percent": "3.52%",
+      "sector": "Financial"
+    },
+    {
+      "company_name": "Ipca Laboratories Ltd",
+      "corpus_percent": "3.43%",
+      "sector": "Healthcare"
+    }
+  ],
+  "portfolio_turnover": "13%",
+  "launch_date": "01-Jan-2013",
+  "stamp_duty": "0.005% (from July 1st, 2020)",
+  "risk_ratios": {
+    "standard_deviation": "+16.13%",
+    "beta": "0.86",
+    "sharpe_ratio": "0.62",
+    "sortino_ratio": "0.77",
+    "alpha": "2.44%"
+  },
+  "source_url": "https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth",
+  "last_updated_date": "2026-10-27"
+}

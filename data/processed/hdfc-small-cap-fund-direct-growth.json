@@ -1,0 +1,71 @@
+{
+  "scheme_id": "hdfc-small-cap-fund-direct-growth",
+  "scheme_name": "HDFC Small Cap Fund Direct-Growth",
+  "category": "Small Cap Equity",
+  "amc": "HDFC Mutual Fund",
+  "nav": "₹148.3940",
+  "nav_date": "23-Oct-2026",
+  "groww_rating": "3 out of 5 Stars",
+  "expense_ratio": "0.8% (Direct Plan)",
+  "exit_load": "Exit load of 1% if redeemed within 1 year",
+  "min_sip_amount": "₹100",
+  "min_lumpsum_amount": "₹100",
+  "lock_in_period": "Nil (Open-ended scheme with no lock-in period)",
+  "riskometer": "Moderately High Riskometer",
+  "benchmark_index": "BSE 250 SmallCap Total Return Index",
+  "fund_manager": "Chirag Setalvad",
+  "aum": "₹40,800.81 Cr",
+  "returns_lumpsum": {
+    "1Y": "-8.66%",
+    "3Y": "+8.91% (CAGR)",
+    "5Y": "+12.96% (CAGR)",
+    "10Y": "+16.29% (CAGR)",
+    "since_inception": "+17.54% (CAGR)"
+  },
+  "returns_sip": {
+    "1Y": "-8.30%",
+    "3Y": "+0.15% (XIRR)",
+    "5Y": "+9.91% (XIRR)",
+    "10Y": "+16.46% (XIRR)",
+    "since_inception": "+17.25% (XIRR)"
+  },
+  "top_holdings": [
+    {
+      "company_name": "Repo",
+      "corpus_percent": "10.03%",
+      "sector": "Unspecified"
+    },
+    {
+      "company_name": "Firstsource Solutions Ltd",
+      "corpus_percent": "3.68%",
+      "sector": "Industrials"
+    },
+    {
+      "company_name": "Aster DM Healthcare Ltd",
+      "corpus_percent": "3.37%",
+      "sector": "Healthcare"
+    },
+    {
+      "company_name": "Gabriel India Ltd",
+      "corpus_percent": "3.09%",
+      "sector": "Consumer Discretionary"
+    },
+    {
+      "company_name": "eClerx Services Ltd",
+      "corpus_percent": "2.92%",
+      "sector": "Technology"
+    }
+  ],
+  "portfolio_turnover": "6%",
+  "launch_date": "01-Jan-2013",
+  "stamp_duty": "0.005% (from July 1st, 2020)",
+  "risk_ratios": {
+    "standard_deviation": "+17.61%",
+    "beta": "0.78",
+    "sharpe_ratio": "0.31",
+    "sortino_ratio": "0.45",
+    "alpha": "-1.05%"
+  },
+  "source_url": "https://groww.in/mutual-funds/hdfc-small-cap-fund-direct-growth",
+  "last_updated_date": "2026-10-27"
+}

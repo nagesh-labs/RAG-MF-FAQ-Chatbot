@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SBI Mutual Fund FAQ - RAG Chatbot</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              emerald: '#00d09c',
+              emeraldDark: '#059669',
+              emeraldGlow: 'rgba(0, 208, 156, 0.15)',
+              navy: '#090d16',
+              surface: '#0f172a',
+              card: '#111827',
+              cardBorder: '#1f2937',
+              activeBorder: '#00d09c'
+            }
+          }
+        }
+      }
+    };
+  </script>
+<!-- Custom Styles: Scrollbars & Glow Effects -->
+<style data-purpose="custom-scrollbar">
+    /* Subtle custom dark scrollbar for schemes list */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+<style data-purpose="glow-and-transitions">
+    .glow-active {
+      box-shadow: 0 0 0 1px #00d09c, 0 4px 20px -2px rgba(0, 208, 156, 0.12);
+    }
+    .hero-glow {
+      box-shadow: 0 0 40px -5px rgba(0, 208, 156, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 flex flex-col h-screen overflow-hidden antialiased font-sans select-none">
+<!-- BEGIN: TopDisclaimerBanner -->
+<header class="w-full bg-[#0a0d14] border-b border-slate-800/80 px-4 py-2 flex items-center gap-3 text-xs z-50 shrink-0" data-purpose="global-disclaimer">
+<span class="bg-[#facc15] text-[#0f172a] font-black px-2 py-0.5 rounded text-[10px] tracking-wide uppercase shadow-sm">
+      DISCLAIMER
+    </span>
+<p class="text-slate-300 leading-tight">
+      This is a <strong class="text-white font-semibold">facts-only</strong> assistant for SBI Mutual Funds. It cannot provide investment advice, personal portfolio details, or performance projections. All information is retrieved directly from official scheme factsheets.
+    </p>
+</header>
+<!-- END: TopDisclaimerBanner -->
+<!-- BEGIN: AppHeader -->
+<nav class="w-full bg-[#0d1322] border-b border-slate-800/90 px-6 py-3.5 flex items-center justify-between z-40 shrink-0" data-purpose="primary-navigation">
+<!-- Brand identification -->
+<div class="flex items-center space-x-3.5">
+<!-- SBI Emblem / Logo Icon Representation -->
+<div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-[#00b074] to-[#00e5a3] flex items-center justify-center shadow-lg shadow-emerald-950/40 ring-1 ring-emerald-400/30">
+<!-- Iconic keyhole / circle symbol -->
+<svg class="w-5 h-5 text-[#0d1322]" fill="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" fill="none" r="9" stroke="currentColor" stroke-width="3"></circle>
+<path d="M12 9v6" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<div>
+<div class="flex items-center space-x-2">
+<h1 class="font-bold text-base tracking-tight text-white flex items-center">
+            SBI Mutual Fund FAQ
+          </h1>
+</div>
+<p class="text-[11px] font-medium text-slate-400 tracking-wide">RAG Chatbot</p>
+</div>
+</div>
+<!-- Live Status Indicator -->
+<div class="flex items-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#022c22]/70 border border-emerald-600/40 text-emerald-400 text-xs font-semibold shadow-inner">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+</span>
+<span class="text-[11px] tracking-wide font-medium">API Online</span>
+</div>
+</div>
+</nav>
+<!-- END: AppHeader -->
+<!-- BEGIN: MainContainer -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- BEGIN: LeftSidebar -->
+<aside class="w-80 lg:w-[350px] shrink-0 border-r border-slate-800/80 bg-[#0d1320] flex flex-col h-full" data-purpose="scheme-selector">
+<!-- Sidebar Header Info -->
+<div class="p-4 pb-3 border-b border-slate-800/50">
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-200">
+          SELECT FUND CONTEXT
+        </h2>
+<p class="text-xs text-slate-400 mt-0.5 leading-snug">
+          Your questions will be answered in the context of this fund.
+        </p>
+</div>
+<!-- Schemes Card List with scrollable container -->
+<div class="flex-1 overflow-y-auto p-3.5 space-y-2.5 custom-scrollbar" id="fund-cards-container">
+<!-- Scheme 1: General (Active Default) -->
+<button class="fund-card w-full text-left p-3.5 rounded-xl border border-[#00d09c] bg-[#111927] glow-active transition-all duration-200 group" data-fund-name="General / All Schemes" onclick="selectFund('General / All Schemes')" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[11px] font-medium text-emerald-400">General FAQ &amp; Guide</span>
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700/60">N/A RISK</span>
+</div>
+<h3 class="font-bold text-sm text-white group-hover:text-emerald-300 transition-colors">General / All Schemes</h3>
+<p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Query general FAQs, statement instructions, and account guidelines across all funds.
+          </p>
+</button>
+<!-- Scheme 2: SBI Bluechip Fund -->
+<button class="fund-card w-full text-left p-3.5 rounded-xl border border-slate-800/80 bg-[#101726]/60 hover:bg-[#131d2e] hover:border-slate-700 transition-all duration-200 group" data-fund-name="SBI Bluechip Fund" onclick="selectFund('SBI Bluechip Fund')" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[11px] font-medium text-slate-300">Equity - Large Cap</span>
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-950/60 text-red-400 border border-red-800/40">VERY HIGH RISK</span>
+</div>
+<h3 class="font-bold text-sm text-white group-hover:text-emerald-300 transition-colors">SBI Bluechip Fund</h3>
+<p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Focuses on large-cap bluechip stocks with long-term growth potential.
+          </p>
+</button>
+<!-- Scheme 3: SBI Long Term Equity Fund -->
+<button class="fund-card w-full text-left p-3.5 rounded-xl border border-slate-800/80 bg-[#101726]/60 hover:bg-[#131d2e] hover:border-slate-700 transition-all duration-200 group" data-fund-name="SBI Long Term Equity Fund" onclick="selectFund('SBI Long Term Equity Fund')" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[11px] font-medium text-slate-300">Equity - ELSS (Tax Saver)</span>
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-950/60 text-red-400 border border-red-800/40">VERY HIGH RISK</span>
+</div>
+<h3 class="font-bold text-sm text-white group-hover:text-emerald-300 transition-colors">SBI Long Term Equity Fund</h3>
+<p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Equity Linked Saving Scheme offering tax benefits under Section 80C.
+          </p>
+</button>
+<!-- Scheme 4: SBI Flexicap Fund -->
+<button class="fund-card w-full text-left p-3.5 rounded-xl border border-slate-800/80 bg-[#101726]/60 hover:bg-[#131d2e] hover:border-slate-700 transition-all duration-200 group" data-fund-name="SBI Flexicap Fund" onclick="selectFund('SBI Flexicap Fund')" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[11px] font-medium text-slate-300">Equity - Flexi Cap</span>
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-950/60 text-red-400 border border-red-800/40">VERY HIGH RISK</span>
+</div>
+<h3 class="font-bold text-sm text-white group-hover:text-emerald-300 transition-colors">SBI Flexicap Fund</h3>
+<p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Invests across large-cap, mid-cap, and small-cap stocks.
+          </p>
+</button>
+<!-- Scheme 5: SBI Contra Fund -->
+<button class="fund-card w-full text-left p-3.5 rounded-xl border border-slate-800/80 bg-[#101726]/60 hover:bg-[#131d2e] hover:border-slate-700 transition-all duration-200 group" data-fund-name="SBI Contra Fund" onclick="selectFund('SBI Contra Fund')" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[11px] font-medium text-slate-300">Equity - Contra</span>
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-950/60 text-red-400 border border-red-800/40">VERY HIGH RISK</span>
+</div>
+<h3 class="font-bold text-sm text-white group-hover:text-emerald-300 transition-colors">SBI Contra Fund</h3>
+<p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Focuses on contrarian investment strategy, buying out-of-favor stocks.
+          </p>
+</button>
+<!-- Scheme 6: SBI Liquid Fund -->
+<button class="fund-card w-full text-left p-3.5 rounded-xl border border-slate-800/80 bg-[#101726]/60 hover:bg-[#131d2e] hover:border-slate-700 transition-all duration-200 group" data-fund-name="SBI Liquid Fund" onclick="selectFund('SBI Liquid Fund')" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[11px] font-medium text-cyan-300">Debt - Liquid</span>
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-cyan-950/60 text-cyan-400 border border-cyan-800/40">LOW RISK</span>
+</div>
+<h3 class="font-bold text-sm text-white group-hover:text-emerald-300 transition-colors">SBI Liquid Fund</h3>
+<p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            High liquidity and lower risk by investing in short-term debt securities.
+          </p>
+</button>
+<!-- Scheme 7: SBI Small Cap Fund -->
+<button class="fund-card w-full text-left p-3.5 rounded-xl border border-slate-800/80 bg-[#101726]/60 hover:bg-[#131d2e] hover:border-slate-700 transition-all duration-200 group" data-fund-name="SBI Small Cap Fund" onclick="selectFund('SBI Small Cap Fund')" type="button">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[11px] font-medium text-slate-300">Equity - Small Cap</span>
+<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-950/60 text-red-400 border border-red-800/40">VERY HIGH RISK</span>
+</div>
+<h3 class="font-bold text-sm text-white group-hover:text-emerald-300 transition-colors">SBI Small Cap Fund</h3>
+<p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            Focuses on high-growth potential small-cap companies.
+          </p>
+</button>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainChatWorkspace -->
+<main class="flex-1 flex flex-col justify-between bg-[#0b101b] relative overflow-hidden" data-purpose="chat-conversation-area">
+<!-- Hero Empty State Content -->
+<section class="flex-1 flex flex-col items-center justify-center px-6 max-w-2xl mx-auto text-center z-10 w-full">
+<!-- Glowing Sparkle / AI Star Badge -->
+<div class="w-14 h-14 rounded-2xl bg-[#091a1d] border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 hero-glow ring-1 ring-emerald-500/20">
+<svg class="w-7 h-7" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 2L13.8 8.8L20.6 10.6L13.8 12.4L12 19.2L10.2 12.4L3.4 10.6L10.2 8.8L12 2Z"></path>
+</svg>
+</div>
+<!-- Assistant Title -->
+<h2 class="text-3xl font-extrabold text-white tracking-tight mb-2">
+          SBI Mutual Fund Assistant
+        </h2>
+<!-- Context Scoped Indication -->
+<p class="text-sm text-slate-400 mb-3">
+          Currently scoped to: <span class="font-semibold text-emerald-400" id="active-scope-badge">General / All Schemes</span>
+</p>
+<!-- Descriptive Subtext -->
+<p class="text-xs text-slate-400 max-w-md leading-relaxed mb-6">
+          Ask specific factual questions about investment guidelines, exit loads, minimum investments, fund managers, and scheme rules.
+        </p>
+<!-- Facts-Only Warning Box -->
+<div class="w-full bg-[#181512]/90 border border-amber-500/30 rounded-xl p-4 flex items-start text-left gap-3.5 shadow-lg">
+<div class="text-amber-400 mt-0.5 shrink-0">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+<line x1="12" x2="12" y1="9" y2="13"></line>
+<line x1="12" x2="12.01" y1="17" y2="17"></line>
+</svg>
+</div>
+<p class="text-xs text-amber-200/90 leading-relaxed font-normal">
+            This assistant enforces facts-only guardrails. Queries asking for investment advice, returns performance, or containing personal identification numbers (PAN, Aadhaar) will be refused automatically.
+          </p>
+</div>
+</section>
+<!-- Bottom Chat Interaction & Suggestions Section -->
+<footer class="w-full max-w-4xl mx-auto px-6 pb-6 pt-2" data-purpose="chat-input-controls">
+<!-- Horizontal Suggestions Strip -->
+<div class="flex items-center gap-2 mb-3.5 overflow-x-auto no-scrollbar py-1">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 shrink-0 mr-1">
+            SUGGESTIONS:
+          </span>
+<button class="shrink-0 px-3.5 py-1.5 text-xs text-slate-300 bg-[#131b29] hover:bg-[#1a2538] hover:text-white border border-slate-800 rounded-full transition-colors whitespace-nowrap" onclick="applySuggestion('How can I check my mutual fund statement?')" type="button">
+            How can I check my mutual fund statement?
+          </button>
+<button class="shrink-0 px-3.5 py-1.5 text-xs text-slate-300 bg-[#131b29] hover:bg-[#1a2538] hover:text-white border border-slate-800 rounded-full transition-colors whitespace-nowrap" onclick="applySuggestion('What is the exit load on SBI funds?')" type="button">
+            What is the exit load on SBI funds?
+          </button>
+<button class="shrink-0 px-3.5 py-1.5 text-xs text-slate-300 bg-[#131b29] hover:bg-[#1a2538] hover:text-white border border-slate-800 rounded-full transition-colors whitespace-nowrap" onclick="applySuggestion('How to update email/mobile number?')" type="button">
+            How to update email/mobile number?
+          </button>
+</div>
+<!-- Chat Input Form -->
+<form class="relative flex items-center" onsubmit="handleSend(event)">
+<input autocomplete="off" class="w-full bg-[#121824] text-sm text-slate-100 placeholder-slate-400 rounded-xl px-4 py-3.5 pr-14 border border-slate-800 focus:outline-none focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/40 shadow-xl transition-all" id="chat-input" placeholder="Ask anything about SBI Mutual Funds..." type="text"/>
+<button aria-label="Send message" class="absolute right-2 top-2 bottom-2 px-3.5 rounded-lg bg-[#1f293d] hover:bg-[#28354f] text-slate-300 hover:text-white flex items-center justify-center transition-colors" type="submit">
+<!-- Send Airplane Icon -->
+<svg class="w-4 h-4 transform rotate-45 -translate-y-0.5 -translate-x-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<line x1="22" x2="11" y1="2" y2="13"></line>
+<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+</svg>
+</button>
+</form>
+</footer>
+</main>
+<!-- END: MainChatWorkspace -->
+</div>
+<!-- END: MainContainer -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="fund-selection-logic">
+    function selectFund(fundName) {
+      // Update the active scope label
+      const activeScopeBadge = document.getElementById('active-scope-badge');
+      if (activeScopeBadge) {
+        activeScopeBadge.textContent = fundName;
+      }
+
+      // Update styling on cards
+      const cards = document.querySelectorAll('.fund-card');
+      cards.forEach(card => {
+        const name = card.getAttribute('data-fund-name');
+        if (name === fundName) {
+          card.classList.remove('border-slate-800/80', 'bg-[#101726]/60');
+          card.classList.add('border-[#00d09c]', 'bg-[#111927]', 'glow-active');
+        } else {
+          card.classList.remove('border-[#00d09c]', 'bg-[#111927]', 'glow-active');
+          card.classList.add('border-slate-800/80', 'bg-[#101726]/60');
+        }
+      });
+    }
+
+    function applySuggestion(queryText) {
+      const input = document.getElementById('chat-input');
+      if (input) {
+        input.value = queryText;
+        input.focus();
+      }
+    }
+
+    function handleSend(event) {
+      event.preventDefault();
+      const input = document.getElementById('chat-input');
+      if (input && input.value.trim() !== '') {
+        // Clear input for demo feel
+        input.value = '';
+      }
+    }
+  </script>
+<!-- END: InteractiveScripts -->
+</body></html>

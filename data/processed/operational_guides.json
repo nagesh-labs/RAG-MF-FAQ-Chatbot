@@ -1,0 +1,26 @@
+[
+  {
+    "guide_id": "guide-download-statement",
+    "title": "Process to Download Mutual Fund Account Statement",
+    "category": "Operational Guide",
+    "content": "To download your mutual fund account statement on Groww, navigate to your Profile, select 'Reports', and click on 'Mutual Funds Statement' to download your consolidated PDF statement. Alternatively, an official Consolidated Account Statement (CAS) can be generated from the CAMS (camsonline.com) or KFintech investor portals by entering your registered email and PAN.",
+    "source_url": "https://groww.in/mutual-funds",
+    "last_updated_date": "2026-10-27"
+  },
+  {
+    "guide_id": "guide-download-capital-gains",
+    "title": "Process to Download Capital Gains Report / Tax Statement",
+    "category": "Operational Guide",
+    "content": "To download your Capital Gains Report on Groww for tax filing, go to Profile, select 'Reports', and choose 'Capital Gains Report'. Select the relevant financial year (e.g., FY 2024-25) to download your verified statement showing short-term (STCG) and long-term capital gains (LTCG). Statements can also be downloaded directly from the HDFC AMC investor service portal.",
+    "source_url": "https://groww.in/mutual-funds",
+    "last_updated_date": "2026-10-27"
+  },
+  {
+    "guide_id": "guide-elss-lock-in",
+    "title": "ELSS Lock-in Period Rules",
+    "category": "Regulatory / Scheme Rule",
+    "content": "Equity Linked Savings Schemes (ELSS) have a mandatory statutory lock-in period of 3 years from the date of allotment under Section 80C. For investments made via SIP, each individual monthly installment is locked in for exactly 3 years. In contrast, standard open-ended equity schemes such as HDFC Mid-Cap, Small Cap, Large Cap, and Multi-Cap have zero lock-in period.",
+    "source_url": "https://groww.in/mutual-funds",
+    "last_updated_date": "2026-10-27"
+  }
+]
