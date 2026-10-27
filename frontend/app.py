@@ -40,7 +40,7 @@ st.set_page_config(
     page_title="HDFC Mutual Fund FAQ | RAG Chatbot",
     page_icon="🟢",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 API_BASE_URL = os.getenv("API_URL", f"http://127.0.0.1:{settings.api_port}")
@@ -224,10 +224,39 @@ render_html(
         height: 0 !important;
     }
 
+    /* Completely hide and eliminate left sidebar, collapse chevron tab, and scrollbars */
+    [data-testid="stSidebar"],
+    [data-testid="collapsedControl"],
+    [data-testid="stSidebarCollapseButton"],
+    [data-testid="stSidebarNav"],
+    section[data-testid="stSidebar"],
+    button[aria-label="Close sidebar"],
+    button[aria-label="Open sidebar"] {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        max-width: 0 !important;
+        min-width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+
     .block-container {
         padding-top: 0rem !important;
-        padding-bottom: 5rem !important;
-        max-width: 1350px !important;
+        padding-bottom: 5.5rem !important;
+        max-width: 920px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Ensure chat input bottom container aligns with centered content */
+    div[data-testid="stBottom"] > div {
+        max-width: 920px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     /* Custom Sleek Scrollbar from code.html */
@@ -909,91 +938,6 @@ if "selected_fund_context" not in st.session_state:
 
 
 # ----------------------------------------------------------------------
-# SIDEBAR: SELECT FUND CONTEXT (Obsidian Capital Cards)
-# ----------------------------------------------------------------------
-with st.sidebar:
-    render_html(
-        """
-        <div class="sidebar-header-box">
-            <div class="sidebar-title">SELECT FUND CONTEXT</div>
-            <div class="sidebar-subtitle">Your questions will be answered in the context of this fund.</div>
-        </div>
-        """
-    )
-
-    # Fund Context Cards
-    for ctx in FUND_CONTEXTS:
-        ctx_id = ctx["id"]
-        is_active = (st.session_state.selected_fund_context == ctx_id)
-        card_active_class = "fund-card-box-active" if is_active else ""
-
-        # Category styling
-        if ctx_id == "all":
-            cat_html = f'<span class="cat-tag-emerald">{ctx["category"]}</span>'
-        elif "Commodity" in ctx["category"]:
-            cat_html = f'<span class="cat-tag-cyan">{ctx["category"]}</span>'
-        else:
-            cat_html = f'<span class="cat-tag-slate">{ctx["category"]}</span>'
-
-        # Risk badge styling
-        if ctx["risk_type"] == "na":
-            risk_badge_html = f'<span class="risk-badge-na">{ctx["risk"]}</span>'
-        elif ctx["risk_type"] == "high":
-            risk_badge_html = f'<span class="risk-badge-vhigh">{ctx["risk"]}</span>'
-        else:
-            risk_badge_html = f'<span class="risk-badge-high">{ctx["risk"]}</span>'
-
-        render_html(
-            f"""
-            <div class="fund-card-box {card_active_class}">
-                <div class="card-top-flex">
-                    {cat_html}
-                    {risk_badge_html}
-                </div>
-                <div class="card-title-text">{ctx['name']}</div>
-                <div class="card-desc-text">{ctx['desc']}</div>
-            </div>
-            """
-        )
-
-        btn_label = f"✓ Scoped to {ctx['name']}" if is_active else f"Select {ctx['name']}"
-        if st.button(btn_label, key=f"btn_ctx_{ctx_id}", use_container_width=True):
-            st.session_state.selected_fund_context = ctx_id
-            st.rerun()
-
-    render_html("<hr style='border-color: rgba(30, 41, 59, 0.5); margin: 16px 0 12px 0;'/>")
-
-    # Conversation Sessions Drawer
-    render_html('<div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #e2e8f0; margin-bottom: 8px;">CONVERSATION SESSIONS</div>')
-    if st.button("➕ New Chat Session", use_container_width=True):
-        new_id = api_create_thread()
-        st.session_state.active_thread_id = new_id
-        st.rerun()
-
-    threads = api_list_threads()
-    if threads:
-        if not st.session_state.active_thread_id or not any(t["thread_id"] == st.session_state.active_thread_id for t in threads):
-            st.session_state.active_thread_id = threads[0]["thread_id"]
-
-        for t in threads[:5]:
-            t_id = t["thread_id"]
-            title = t.get("title", f"Chat {t_id[:6]}")
-            is_active_t = (t_id == st.session_state.active_thread_id)
-
-            col1, col2 = st.columns([5, 1])
-            with col1:
-                label = f"📌 {title[:18]}" if is_active_t else f"💬 {title[:18]}"
-                if st.button(label, key=f"t_btn_{t_id}", use_container_width=True):
-                    st.session_state.active_thread_id = t_id
-                    st.rerun()
-            with col2:
-                if st.button("🗑️", key=f"t_del_{t_id}", help="Delete"):
-                    api_delete_thread(t_id)
-                    st.session_state.active_thread_id = None
-                    st.rerun()
-
-
-# ----------------------------------------------------------------------
 # MAIN WORKSPACE
 # ----------------------------------------------------------------------
 
@@ -1056,16 +1000,26 @@ render_html(
 )
 
 # Active Fund Context Object
-curr_ctx_id = st.session_state.selected_fund_context
+curr_ctx_id = st.session_state.get("selected_fund_context", "all")
 curr_ctx = next((c for c in FUND_CONTEXTS if c["id"] == curr_ctx_id), FUND_CONTEXTS[0])
 
 # Retrieve messages
 messages = api_get_messages(st.session_state.active_thread_id)
 
+# Quick New Chat Action Bar (Visible when active conversation exists)
+if messages:
+    bar_col1, bar_col2 = st.columns([5, 1])
+    with bar_col1:
+        render_html('<div style="font-size: 12px; color: #94a3b8; padding-top: 6px;">Active Chat Session • Facts retrieved from audited HDFC scheme factsheets</div>')
+    with bar_col2:
+        if st.button("➕ New Chat", key="btn_new_chat_top", use_container_width=True, help="Start a new chat session"):
+            st.session_state.active_thread_id = api_create_thread()
+            st.rerun()
+
 # 3. ZERO-STATE SCREEN (Exact Match to screen.png & code.html)
 if not messages:
     render_html(
-        f"""
+        """
         <div class="hero-container">
             <div class="hero-sparkle-box">
                 <svg style="width: 28px; height: 28px;" fill="currentColor" viewBox="0 0 24 24">
@@ -1074,10 +1028,10 @@ if not messages:
             </div>
             <div class="hero-main-title">HDFC Mutual Fund Assistant</div>
             <div class="hero-scope-text">
-                Currently scoped to: <span class="hero-scope-badge">{curr_ctx['name']}</span>
+                Factual Scope: <span class="hero-scope-badge">All 5 HDFC Mutual Fund Schemes</span>
             </div>
             <div class="hero-instruction">
-                Ask specific factual questions about investment guidelines, exit loads, minimum investments, fund managers, and scheme rules.
+                Ask specific factual questions about investment guidelines, exit loads, minimum investments, fund managers, and scheme rules across Top 100, Mid-Cap, Small Cap, Multi-Cap, and Silver ETF FoF.
             </div>
             <div class="facts-warning-box">
                 <div class="warning-icon">
@@ -1164,13 +1118,18 @@ for msg_idx, msg in enumerate(messages):
 # ----------------------------------------------------------------------
 # 5. SUGGESTIONS ROW (Exact Match to screen.png & code.html)
 # ----------------------------------------------------------------------
-suggestions_list = CONTEXT_SUGGESTIONS.get(curr_ctx_id, CONTEXT_SUGGESTIONS["all"])
+suggestions_list = [
+    "What is the minimum SIP for HDFC Top 100?",
+    "What is the exit load on HDFC Mid-Cap?",
+    "What is 3Y CAGR & 5Y SIP return for Small Cap?",
+    "What is the expense ratio of HDFC Silver ETF FoF?",
+]
 
 render_html('<div class="suggestions-label">SUGGESTIONS:</div>')
 sugg_cols = st.columns(len(suggestions_list))
 for idx, sugg_text in enumerate(suggestions_list):
     with sugg_cols[idx]:
-        if st.button(sugg_text, key=f"sugg_{curr_ctx_id}_{idx}", use_container_width=True):
+        if st.button(sugg_text, key=f"sugg_btn_{idx}", use_container_width=True):
             st.session_state.preset_prompt = sugg_text
             st.rerun()
 
