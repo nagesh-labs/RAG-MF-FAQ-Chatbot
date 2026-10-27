@@ -11,9 +11,10 @@ from typing import Any, Dict, List, Optional
 import chromadb
 from sentence_transformers import SentenceTransformer
 
+import sys
 from src.config import PROCESSED_DATA_DIR, RAW_DATA_DIR, VECTOR_STORE_DIR, settings
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s", stream=sys.stdout)
 logger = logging.getLogger(__name__)
 
 

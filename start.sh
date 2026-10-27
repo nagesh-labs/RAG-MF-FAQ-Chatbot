@@ -21,10 +21,10 @@ echo "[2/4] Starting FastAPI backend on 127.0.0.1:${API_PORT:-8000}..."
 python -m uvicorn src.api.app:app --host 127.0.0.1 --port ${API_PORT:-8000} &
 BACKEND_PID=$!
 
-# 3. Wait for FastAPI to become healthy
+# 3. Wait for FastAPI to become healthy (probes status: "ok")
 echo "[3/4] Waiting for backend API healthcheck probe..."
 for i in {1..30}; do
-    if curl -s "http://127.0.0.1:${API_PORT:-8000}/api/health" | grep -q "HEALTHY"; then
+    if curl -s "http://127.0.0.1:${API_PORT:-8000}/api/health" | grep -q '"status":"ok"'; then
         echo "[3/4] Backend API is ONLINE and HEALTHY."
         break
     fi

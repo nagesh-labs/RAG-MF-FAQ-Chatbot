@@ -6,6 +6,7 @@ Exposes REST endpoints for chat interaction, thread management, scheme catalogs,
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 import logging
+import sys
 from typing import List, Optional
 
 from fastapi import FastAPI, HTTPException, status
@@ -30,7 +31,7 @@ from src.api.schemas import (
 )
 
 logger = logging.getLogger("milestone_rag.api")
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 
 
 @asynccontextmanager
