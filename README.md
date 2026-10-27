@@ -34,7 +34,7 @@ The system covers 5 representative schemes across diverse asset categories with 
 | :-: | :--- | :--- | :--- | :--- |
 | **1** | **HDFC Mid-Cap Opportunities Fund Direct-Growth** | Mid Cap Equity | NIFTY Midcap 150 TRI | [Groww Mid-Cap](https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth) |
 | **2** | **HDFC Small Cap Fund Direct-Growth** | Small Cap Equity | BSE 250 SmallCap TRI | [Groww Small Cap](https://groww.in/mutual-funds/hdfc-small-cap-fund-direct-growth) |
-| **3** | **HDFC Top 100 Fund Direct-Growth (Large Cap)** | Large Cap Equity | NIFTY 100 TRI | [Groww Large Cap](https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth) |
+| **3** | **HDFC Large Cap Fund Direct-Growth** | Large Cap Equity | NIFTY 100 TRI | [Groww Large Cap](https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth) |
 | **4** | **HDFC Silver ETF Fund of Fund Direct-Growth** | Commodities / Silver FoF | Domestic Price of Physical Silver | [Groww Silver ETF](https://groww.in/mutual-funds/hdfc-silver-etf-fof-direct-growth) |
 | **5** | **HDFC Multi-Cap Fund Direct-Growth** | Multi Cap Equity | NIFTY 500 Multicap 50:25:25 TRI | [Groww Multi-Cap](https://groww.in/mutual-funds/hdfc-multi-cap-fund-direct-growth) |
 

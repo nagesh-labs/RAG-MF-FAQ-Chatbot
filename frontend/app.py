@@ -3,7 +3,7 @@ HDFC FundIQ: SEBI & AMFI Compliant Facts-Only Mutual Fund Assistant
 Frontend styled directly from stitch_hdfc_fundiq_assistant (Obsidian Capital Design System):
 - Top Sticky Amber Disclaimer Banner
 - Primary App Header with Emerald Brand Emblem, "HDFC Mutual Fund FAQ", "RAG Chatbot", and Pulsing "API Online" Capsule
-- Left Sidebar with "SELECT FUND CONTEXT" & High-Density Fund Cards (General, Top 100, Mid-Cap, Small Cap, Multi-Cap, Silver ETF)
+- Left Sidebar with "SELECT FUND CONTEXT" & High-Density Fund Cards (General, Large Cap, Mid-Cap, Small Cap, Multi-Cap, Silver ETF)
 - Center Hero Screen with Glowing Emerald AI Sparkle Star, "HDFC Mutual Fund Assistant", Scoped Scope Indicator, and Amber Guardrail Callout
 - Bottom Horizontal Pill Suggestions Strip
 - Bottom Floating Dark-Glass Chat Input Bar
@@ -57,7 +57,7 @@ FUND_CONTEXTS = [
     },
     {
         "id": "hdfc-large-cap-fund-direct-growth",
-        "name": "HDFC Top 100 Fund",
+        "name": "HDFC Large Cap Fund",
         "category": "Equity - Large Cap",
         "risk": "VERY HIGH RISK",
         "risk_type": "high",
@@ -106,10 +106,10 @@ CONTEXT_SUGGESTIONS = {
         "What is the lock-in period for ELSS funds?",
     ],
     "hdfc-large-cap-fund-direct-growth": [
-        "What is the expense ratio of HDFC Top 100?",
-        "What are top 5 stock holdings of HDFC Top 100?",
-        "What is the 3-year return of HDFC Top 100?",
-        "What is the minimum SIP for HDFC Top 100?",
+        "What is the expense ratio of HDFC Large Cap?",
+        "What are top 5 stock holdings of HDFC Large Cap?",
+        "What is the 3-year return of HDFC Large Cap?",
+        "What is the minimum SIP for HDFC Large Cap?",
     ],
     "hdfc-mid-cap-fund-direct-growth": [
         "What is the latest NAV and TER of HDFC Mid-Cap?",
@@ -1031,7 +1031,7 @@ if not messages:
                 Factual Scope: <span class="hero-scope-badge">All 5 HDFC Mutual Fund Schemes</span>
             </div>
             <div class="hero-instruction">
-                Ask specific factual questions about investment guidelines, exit loads, minimum investments, fund managers, and scheme rules across Top 100, Mid-Cap, Small Cap, Multi-Cap, and Silver ETF FoF.
+                Ask specific factual questions about investment guidelines, exit loads, minimum investments, fund managers, and scheme rules across Large Cap, Mid-Cap, Small Cap, Multi-Cap, and Silver ETF FoF.
             </div>
             <div class="facts-warning-box">
                 <div class="warning-icon">
@@ -1119,7 +1119,7 @@ for msg_idx, msg in enumerate(messages):
 # 5. SUGGESTIONS ROW (Exact Match to screen.png & code.html)
 # ----------------------------------------------------------------------
 suggestions_list = [
-    "What is the minimum SIP for HDFC Top 100?",
+    "What is the minimum SIP for HDFC Large Cap?",
     "What is the exit load on HDFC Mid-Cap?",
     "What is 3Y CAGR & 5Y SIP return for Small Cap?",
     "What is the expense ratio of HDFC Silver ETF FoF?",

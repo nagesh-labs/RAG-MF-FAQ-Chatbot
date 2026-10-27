@@ -51,10 +51,10 @@ TARGET_SCHEMES: Dict[str, SchemeMetadata] = {
     ),
     "hdfc-large-cap-fund-direct-growth": SchemeMetadata(
         scheme_id="hdfc-large-cap-fund-direct-growth",
-        scheme_name="HDFC Top 100 Fund Direct-Growth (Large Cap)",
+        scheme_name="HDFC Large Cap Fund Direct-Growth",
         category="Large Cap Equity",
         source_url="https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth",
-        aliases=["hdfc large cap", "hdfc top 100", "top 100 fund", "hdfc large cap fund"],
+        aliases=["hdfc large cap", "hdfc top 100", "top 100 fund", "hdfc large cap fund", "hdfc top 100 fund"],
     ),
     "hdfc-silver-etf-fof-direct-growth": SchemeMetadata(
         scheme_id="hdfc-silver-etf-fof-direct-growth",
